@@ -121,7 +121,7 @@ class SingleOtpInput extends PureComponent<*> {
 
 class OtpInput extends Component<Props, State> {
   static defaultProps = {
-    numInputs: 4,
+    numInputs: 6,
     onChange: (otp: number): void => console.log(otp),
     isDisabled: false,
     shouldAutoFocus: false,
@@ -216,6 +216,14 @@ class OtpInput extends Component<Props, State> {
       this.focusNextInput();
     } else if (e.keyCode === SPACEBAR || e.key === ' ' || e.key === 'Spacebar') {
       e.preventDefault();
+    } else {
+      const { activeInput } = this.state;
+      const otp = this.getOtpValue();
+      if (e.key === otp[activeInput]) {
+        e.preventDefault();
+        this.changeCodeAtFocus(e.target.value);
+        this.focusNextInput();
+      }
     }
   };
 

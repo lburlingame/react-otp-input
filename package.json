@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "concurrently \"npm run build:watch\" \"npm run demo\"",
-    "build": "babel src/lib -d lib",
+    "build": "babel src/lib -d dist",
     "build:watch": "babel src/lib -w -d lib",
     "demo": "webpack-dev-server --mode development",
     "demo:prod": "webpack --mode production",
@@ -14,6 +14,7 @@
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx}'",
     "prepublish": "npm run build",
     "predeploy": "npm run demo:prod",
+    "prepare": "npm run build",
     "deploy": "gh-pages -d demo",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
